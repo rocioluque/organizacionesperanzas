@@ -6,7 +6,6 @@ import com.cloudinary.android.MediaManager
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        // Initialize AppRepository
         AppRepository.initialize(this)
 
         // Initialize Cloudinary

@@ -135,16 +135,6 @@ object AppRepository {
         }
     }
 
-    // --- CATEGORIES (Delegate View) ---
-    suspend fun getAssignedCategories(userId: String): List<AssignedCategory> {
-        return try {
-            apiService.getAssignedCategories(userId)
-        } catch (e: Exception) {
-            println("API ERROR: Get assigned categories failed - ${e.message}")
-            emptyList()
-        }
-    }
-
     // --- TEAMS (Management) ---
     suspend fun getAllTeams(): List<Team> {
         return try {

@@ -55,84 +55,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Selector de icono (opcional) -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Icono de la categoría"
-        android:textColor="@color/oe_text_dark"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="sans-serif-medium" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/icon_selector_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
-
-    <!-- Selector de color (opcional) -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Color de la categoría"
-        android:textColor="@color/oe_text_dark"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="sans-serif-medium" />
-
-    <LinearLayout
-        android:id="@+id/color_selector_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone">
-
-        <!-- Colores predefinidos para categorías -->
-        <View
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@color/oe_primary"
-            android:layout_margin="4dp"
-            android:tag="color_primary" />
-
-        <View
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="#FF5722"
-            android:layout_margin="4dp"
-            android:tag="color_accent" />
-
-        <View
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="#2196F3"
-            android:layout_margin="4dp"
-            android:tag="color_blue" />
-
-        <View
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="#4CAF50"
-            android:layout_margin="4dp"
-            android:tag="color_green" />
-
-        <View
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="#9C27B0"
-            android:layout_margin="4dp"
-            android:tag="color_purple" />
-
-    </LinearLayout>
-
     <!-- Mensaje de error (dinámico) -->
     <TextView
         android:id="@+id/error_message"
@@ -143,5 +65,34 @@
         android:visibility="gone"
         android:layout_marginTop="8dp"
         android:paddingStart="4dp" />
+
+    <!-- Botones de Acción -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        android:gravity="end">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:textColor="@color/oe_primary_muted"
+            android:layout_marginEnd="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_button"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Añadir"
+            android:backgroundTint="@color/oe_primary"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

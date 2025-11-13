@@ -32,7 +32,6 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!-- Progress Bar mejorado -->
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/categories_progress_bar"
             android:layout_width="match_parent"
@@ -41,7 +40,6 @@
             app:indicatorColor="@color/oe_primary"
             app:trackColor="@color/oe_primary_light" />
 
-        <!-- Estado vacío -->
         <LinearLayout
             android:id="@+id/empty_state"
             android:layout_width="match_parent"
@@ -79,7 +77,6 @@
 
         </LinearLayout>
 
-        <!-- RecyclerView mejorado -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categories_recycler_view"
             android:layout_width="match_parent"
@@ -94,7 +91,6 @@
 
     </LinearLayout>
 
-    <!-- FAB mejorado -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_category_fab"
         android:layout_width="wrap_content"
@@ -107,16 +103,6 @@
         app:rippleColor="@color/oe_primary_dark"
         app:srcCompat="@drawable/ic_add_white_24dp"
         app:elevation="8dp"
-        app:layout_anchor="@id/app_bar_layout"
-        app:layout_anchorGravity="bottom|right|end" />
-
-    <!-- Snackbar anchor para el FAB -->
-    <View
-        android:id="@+id/snackbar_anchor"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        app:layout_anchor="@id/add_category_fab"
-        app:layout_anchorGravity="top" />
+        android:visibility="visible" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

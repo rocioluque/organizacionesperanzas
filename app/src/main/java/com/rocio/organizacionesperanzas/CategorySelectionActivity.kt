@@ -16,7 +16,6 @@ class CategorySelectionActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
     private var userRole: UserRole? = null
-    private var userId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +33,6 @@ class CategorySelectionActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             intent.getSerializableExtra("USER_ROLE") as? UserRole
         }
-        userId = intent.getStringExtra("USER_ID")
 
         recyclerView = findViewById(R.id.category_recycler_view)
         progressBar = findViewById(R.id.progress_bar)
@@ -46,13 +44,7 @@ class CategorySelectionActivity : AppCompatActivity() {
     private fun loadCategories() {
         progressBar.visibility = View.VISIBLE
         lifecycleScope.launch {
-            val items: List<Any> = if (userRole == UserRole.ORGANIZER) {
-                // Organizers get a simple list of all categories
-                AppRepository.getAllCategories()
-            } else {
-                // Delegates get their assigned categories (which include team name)
-                userId?.let { AppRepository.getAssignedCategories(it) } ?: emptyList()
-            }
+            val items: List<Category> = AppRepository.getAllCategories()
             
             progressBar.visibility = View.GONE
             recyclerView.adapter = CategoryAdapter(items, userRole)

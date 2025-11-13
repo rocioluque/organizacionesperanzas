@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Theme base de la aplicación -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Colores principales -->
+        <item name="colorPrimary">@color/oe_primary</item>
+        <item name="colorPrimaryDark">@color/oe_primary_dark</item>
+        <item name="colorAccent">@color/oe_primary</item>
+
+        <!-- Color del texto del menú -->
+        <item name="actionMenuTextColor">@color/oe_text_dark</item>
+        <item name="android:textColorSecondary">@color/oe_text_dark</item>
+    </style>
+
+</resources>

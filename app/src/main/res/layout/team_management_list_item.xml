@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
         <!-- Logo del equipo -->
         <ImageView
@@ -50,21 +51,12 @@
                 android:layout_marginBottom="4dp" />
 
             <TextView
-                android:id="@+id/team_category"
+                android:id="@+id/team_categories" 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Categoría"
+                android:text="Categorías"
                 android:textColor="@color/oe_primary_muted"
-                android:textSize="14sp"
-                android:layout_marginBottom="4dp" />
-
-            <TextView
-                android:id="@+id/team_players_count"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="0 jugadores"
-                android:textColor="@color/oe_primary_muted"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -77,6 +69,16 @@
             android:padding="12dp"
             app:tint="@color/oe_primary"
             app:srcCompat="@drawable/ic_edit" />
+            
+        <ImageButton
+            android:id="@+id/delete_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Eliminar equipo"
+            android:padding="12dp"
+            app:srcCompat="@drawable/ic_delete"
+            app:tint="@android:color/holo_red_dark" />
 
     </LinearLayout>
 

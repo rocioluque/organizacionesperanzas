@@ -2,6 +2,7 @@ package com.rocio.organizacionesperanzas
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -48,15 +49,20 @@ class MainActivity : AppCompatActivity() {
         showLoading(true)
 
         lifecycleScope.launch {
-            when (val result = AppRepository.login(LoginRequest(username, password))) {
-                is Result.Success -> {
-                    // Pass both role and userId to the next screen
-                    navigateToHome(result.data.role, result.data.userId)
+            try {
+                when (val result = AppRepository.login(LoginRequest(username = username, password = password))) {
+                    is Result.Success -> {
+                        navigateToHome(result.data.role, result.data.id)
+                    }
+                    is Result.Error -> {
+                        showLoading(false)
+                        Toast.makeText(this@MainActivity, result.message, Toast.LENGTH_LONG).show()
+                    }
                 }
-                is Result.Error -> {
-                    showLoading(false)
-                    Toast.makeText(this@MainActivity, result.message, Toast.LENGTH_LONG).show()
-                }
+            } catch (e: Exception) {
+                Log.e("LoginCrashDebug", "Login failed with unexpected exception", e)
+                showLoading(false)
+                Toast.makeText(this@MainActivity, "Error inesperado: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -77,6 +83,6 @@ class MainActivity : AppCompatActivity() {
             putExtra("USER_ID", userId)
         }
         startActivity(intent)
-        finish() // Finish login activity so the user can't go back to it
+        finish()
     }
 }

@@ -7,6 +7,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+// CORREGIDO: El adaptador ahora es mucho más simple
 class TeamManagementAdapter(
     private var teams: List<Team>,
     private val listener: OnTeamActionClickListener
@@ -25,31 +26,32 @@ class TeamManagementAdapter(
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
         val team = teams[position]
-        holder.teamName.text = team.name
-
-        // Set the categories and player count
-        holder.teamCategory.text = team.categories.joinToString(", ") { it.name }
-        // The player count is not directly available in the Team object.
-        // This would require a more complex data loading strategy to be accurate.
-        // For now, we'll just show a placeholder.
-        holder.teamPlayersCount.text = "? jugadores"
-
-        holder.editButton.setOnClickListener {
-            listener.onEditTeam(team)
-        }
+        holder.bind(team)
     }
 
     override fun getItemCount(): Int = teams.size
 
+    // CORREGIDO: El método de actualización ahora solo necesita los equipos
     fun updateTeams(newTeams: List<Team>) {
         this.teams = newTeams
         notifyDataSetChanged()
     }
 
-    class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val teamName: TextView = itemView.findViewById(R.id.team_name)
-        val teamCategory: TextView = itemView.findViewById(R.id.team_category)
-        val teamPlayersCount: TextView = itemView.findViewById(R.id.team_players_count)
-        val editButton: ImageButton = itemView.findViewById(R.id.edit_button)
+    inner class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val teamName: TextView = itemView.findViewById(R.id.team_name)
+        private val teamCategories: TextView = itemView.findViewById(R.id.team_categories)
+        private val editButton: ImageButton = itemView.findViewById(R.id.edit_button)
+        private val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)
+
+        fun bind(team: Team) {
+            teamName.text = team.name
+
+            // CORREGIDO: La lógica ahora es mucho más simple
+            val categoryNames = team.categories.map { it.name }
+            teamCategories.text = if (categoryNames.isNotEmpty()) categoryNames.joinToString(", ") else "Sin categoría"
+
+            editButton.setOnClickListener { listener.onEditTeam(team) }
+            deleteButton.setOnClickListener { listener.onDeleteTeam(team) }
+        }
     }
 }

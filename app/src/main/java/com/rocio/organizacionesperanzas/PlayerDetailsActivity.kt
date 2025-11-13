@@ -101,7 +101,7 @@ class PlayerDetailsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        setupVisibility() // Re-apply visibility rules when the activity is resumed
+        setupVisibility()
     }
 
     private fun setupVisibility() {
@@ -111,7 +111,7 @@ class PlayerDetailsActivity : AppCompatActivity() {
                 saveButton.visibility = View.GONE
                 uploadPlayerPhotoButton.visibility = View.GONE
                 setFieldsEditable(false)
-                organizerActionsLayout.visibility = View.VISIBLE // Ensure it's visible
+                organizerActionsLayout.visibility = View.VISIBLE
             }
             else -> {
                 organizerActionsLayout.visibility = View.GONE

@@ -3,6 +3,7 @@ package com.rocio.organizacionesperanzas
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -73,11 +74,7 @@ class CategoryManagementActivity : AppCompatActivity(), CategoryManagementAdapte
                     progressBar.visibility = View.GONE
                     if (success) {
                         Toast.makeText(this@CategoryManagementActivity, "Categoría eliminada", Toast.LENGTH_SHORT).show()
-                        val position = categories.indexOfFirst { it.id == category.id }
-                        if (position != -1) {
-                            categories.removeAt(position)
-                            adapter.notifyItemRemoved(position)
-                        }
+                        loadCategories()
                     } else {
                         Toast.makeText(this@CategoryManagementActivity, "Error al eliminar", Toast.LENGTH_SHORT).show()
                     }
@@ -88,51 +85,52 @@ class CategoryManagementActivity : AppCompatActivity(), CategoryManagementAdapte
     }
 
     private fun showAddOrEditCategoryDialog(category: Category?) {
+        val isEditing = category != null
+
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_add_category, null)
         val categoryNameInput = dialogView.findViewById<EditText>(R.id.category_name_input)
+        val addButton = dialogView.findViewById<Button>(R.id.add_button)
+        val cancelButton = dialogView.findViewById<Button>(R.id.cancel_button)
 
-        val isEditing = category != null
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
         if (isEditing) {
             categoryNameInput.setText(category!!.name)
+            addButton.text = "Guardar"
+        } else {
+            addButton.text = "Añadir"
         }
 
-        val title = if (isEditing) "Editar Categoría" else "Añadir Categoría"
+        addButton.setOnClickListener {
+            val name = categoryNameInput.text.toString().trim()
+            if (name.isNotEmpty()) {
+                progressBar.visibility = View.VISIBLE
+                lifecycleScope.launch {
+                    val newCategoryData = if (isEditing) category!!.copy(name = name) else Category(id = "", name = name)
+                    val result = if (isEditing) {
+                        AppRepository.updateCategory(category!!.id, newCategoryData)
+                    } else {
+                        AppRepository.addCategory(newCategoryData)
+                    }
 
-        AlertDialog.Builder(this)
-            .setTitle(title)
-            .setView(dialogView)
-            .setPositiveButton(if (isEditing) "Guardar" else "Añadir") { _, _ ->
-                val name = categoryNameInput.text.toString().trim()
-                if (name.isNotEmpty()) {
-                    progressBar.visibility = View.VISIBLE
-                    lifecycleScope.launch {
-                        val newCategoryData = if (isEditing) category!!.copy(name = name) else Category(id = "", name = name)
-                        val result = if (isEditing) {
-                            AppRepository.updateCategory(category!!.id, newCategoryData)
-                        } else {
-                            AppRepository.addCategory(newCategoryData)
-                        }
-                        
-                        progressBar.visibility = View.GONE
-                        if (result != null) {
-                            Toast.makeText(this@CategoryManagementActivity, "Guardado con éxito", Toast.LENGTH_SHORT).show()
-                            if (isEditing) {
-                                val position = categories.indexOfFirst { it.id == result.id }
-                                if (position != -1) {
-                                    categories[position] = result
-                                    adapter.notifyItemChanged(position)
-                                }
-                            } else {
-                                categories.add(result)
-                                adapter.notifyItemInserted(categories.size - 1)
-                            }
-                        } else {
-                            Toast.makeText(this@CategoryManagementActivity, "Error al guardar", Toast.LENGTH_SHORT).show()
-                        }
+                    progressBar.visibility = View.GONE
+                    if (result != null) {
+                        Toast.makeText(this@CategoryManagementActivity, "Guardado con éxito", Toast.LENGTH_SHORT).show()
+                        loadCategories()
+                        dialog.dismiss()
+                    } else {
+                        Toast.makeText(this@CategoryManagementActivity, "Error al guardar", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
-            .setNegativeButton("Cancelar", null)
-            .show()
+        }
+
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class CategoryAdapter(
-    private val items: List<Any>,
+    private val items: List<Category>,
     private val userRole: UserRole?
 ) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
@@ -19,33 +19,17 @@ class CategoryAdapter(
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        when (val item = items[position]) {
-            is AssignedCategory -> {
-                holder.categoryName.text = item.category.name
+        val item = items[position]
+        holder.categoryName.text = item.name
 
-                holder.itemLayout.setOnClickListener {
-                    val context = holder.itemView.context
-                    val intent = Intent(context, PlayerManagementActivity::class.java).apply {
-                        putExtra("CATEGORY_ID", item.category.id)
-                        putExtra("CATEGORY_NAME", item.category.name)
-                        putExtra("USER_ROLE", userRole)
-                    }
-                    context.startActivity(intent)
-                }
+        holder.itemLayout.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, TeamSelectionActivity::class.java).apply {
+                putExtra("CATEGORY_ID", item.id)
+                putExtra("CATEGORY_NAME", item.name)
+                putExtra("USER_ROLE", userRole)
             }
-            is Category -> {
-                holder.categoryName.text = item.name
-
-                holder.itemLayout.setOnClickListener {
-                    val context = holder.itemView.context
-                    val intent = Intent(context, TeamSelectionActivity::class.java).apply {
-                        putExtra("CATEGORY_ID", item.id)
-                        putExtra("CATEGORY_NAME", item.name)
-                        putExtra("USER_ROLE", userRole)
-                    }
-                    context.startActivity(intent)
-                }
-            }
+            context.startActivity(intent)
         }
     }
 

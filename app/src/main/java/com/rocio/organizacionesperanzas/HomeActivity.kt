@@ -28,8 +28,6 @@ class HomeActivity : AppCompatActivity() {
             intent.getSerializableExtra("USER_ROLE") as? UserRole
         }
         val userId = intent.getStringExtra("USER_ID")
-
-        // Get views from the layout
         val titleTextView = findViewById<TextView>(R.id.home_title)
         val managePlayersButton = findViewById<Button>(R.id.manage_players_button)
         val manageCategoriesButton = findViewById<Button>(R.id.manage_categories_button)

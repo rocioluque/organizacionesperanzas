@@ -3,7 +3,6 @@ package com.rocio.organizacionesperanzas
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ProgressBar
@@ -15,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -68,16 +66,14 @@ class PlayerManagementActivity : AppCompatActivity(), PlayerAdapter.OnPlayerActi
         playersRecyclerView = findViewById(R.id.players_recycler_view)
         progressBar = findViewById(R.id.player_progress_bar)
         playersRecyclerView.layoutManager = LinearLayoutManager(this)
-        // The adapter is now simpler and doesn't need the maps
         adapter = PlayerAdapter(emptyList(), userRole, this)
         playersRecyclerView.adapter = adapter
     }
 
     private fun setupFab() {
         val addPlayerFab = findViewById<FloatingActionButton>(R.id.add_player_fab)
-        if (userRole == UserRole.ORGANIZER) {
-            addPlayerFab.visibility = View.GONE
-        } else {
+        if (userRole == UserRole.ORGANIZER || userRole == UserRole.DELEGATE) {
+            addPlayerFab.visibility = View.VISIBLE
             addPlayerFab.setOnClickListener {
                 val intent = Intent(this, PlayerDetailsActivity::class.java).apply {
                     putExtra("USER_ROLE", userRole)
@@ -86,6 +82,8 @@ class PlayerManagementActivity : AppCompatActivity(), PlayerAdapter.OnPlayerActi
                 }
                 startActivity(intent)
             }
+        } else {
+            addPlayerFab.visibility = View.GONE
         }
     }
 
