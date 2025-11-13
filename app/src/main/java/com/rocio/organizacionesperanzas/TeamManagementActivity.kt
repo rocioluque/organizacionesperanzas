@@ -79,57 +79,38 @@ class TeamManagementActivity : AppCompatActivity(), TeamManagementAdapter.OnTeam
         val isEditing = team != null
         val title = if (isEditing) "Editar Equipo" else "Añadir Equipo"
 
-        lifecycleScope.launch {
-            // First, get all available categories
-            val allCategories = AppRepository.getAllCategories()
-            val categoryNames = allCategories.map { it.name }.toTypedArray()
-            val checkedCategories = BooleanArray(allCategories.size) {
-                // If editing, check the categories already assigned to the team
-                isEditing && team!!.categories.any { assignedCategory -> assignedCategory.id == allCategories[it].id }
-            }
+        val inflater = LayoutInflater.from(this)
+        val dialogView = inflater.inflate(R.layout.dialog_add_team, null)
+        val teamNameInput = dialogView.findViewById<EditText>(R.id.team_name_input)
 
-            val inflater = LayoutInflater.from(this@TeamManagementActivity)
-            val dialogView = inflater.inflate(R.layout.dialog_add_team, null)
-            val teamNameInput = dialogView.findViewById<EditText>(R.id.team_name_input)
-            if (isEditing) {
-                teamNameInput.setText(team!!.name)
-            }
-
-            AlertDialog.Builder(this@TeamManagementActivity)
-                .setTitle(title)
-                .setView(dialogView) // We set the EditText view here
-                .setMultiChoiceItems(categoryNames, checkedCategories) { _, which, isChecked ->
-                    checkedCategories[which] = isChecked
-                }
-                .setPositiveButton(if (isEditing) "Guardar" else "Añadir") { _, _ ->
-                    val name = teamNameInput.text.toString().trim()
-                    val selectedCategories = mutableListOf<Category>()
-                    for (i in checkedCategories.indices) {
-                        if (checkedCategories[i]) {
-                            selectedCategories.add(allCategories[i])
-                        }
-                    }
-
-                    if (name.isNotEmpty()) {
-                        lifecycleScope.launch {
-                            val teamToSave = Team(id = team?.id ?: "", name = name, categories = selectedCategories)
-                            val result = if (isEditing) {
-                                AppRepository.updateTeam(team!!.id, teamToSave)
-                            } else {
-                                AppRepository.addTeam(teamToSave)
-                            }
-
-                            if (result != null) {
-                                Toast.makeText(this@TeamManagementActivity, "Guardado con éxito", Toast.LENGTH_SHORT).show()
-                                loadTeams()
-                            } else {
-                                Toast.makeText(this@TeamManagementActivity, "Error al guardar", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
-                }
-                .setNegativeButton("Cancelar", null)
-                .show()
+        if (isEditing) {
+            teamNameInput.setText(team!!.name)
         }
+
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setView(dialogView)
+            .setPositiveButton(if (isEditing) "Guardar" else "Añadir") { _, _ ->
+                val name = teamNameInput.text.toString().trim()
+                if (name.isNotEmpty()) {
+                    lifecycleScope.launch {
+                        val teamToSave = Team(id = team?.id ?: "", name = name, categories = emptyList())
+                        val result = if (isEditing) {
+                            AppRepository.updateTeam(team!!.id, teamToSave)
+                        } else {
+                            AppRepository.addTeam(teamToSave)
+                        }
+
+                        if (result != null) {
+                            Toast.makeText(this@TeamManagementActivity, "Guardado con éxito", Toast.LENGTH_SHORT).show()
+                            loadTeams()
+                        } else {
+                            Toast.makeText(this@TeamManagementActivity, "Error al guardar", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -20,9 +21,9 @@ class CategoryAdapter(
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         when (val item = items[position]) {
             is AssignedCategory -> {
-                holder.teamName.text = item.teamName
                 holder.categoryName.text = item.category.name
-                holder.itemView.setOnClickListener {
+
+                holder.itemLayout.setOnClickListener {
                     val context = holder.itemView.context
                     val intent = Intent(context, PlayerManagementActivity::class.java).apply {
                         putExtra("CATEGORY_ID", item.category.id)
@@ -33,9 +34,9 @@ class CategoryAdapter(
                 }
             }
             is Category -> {
-                holder.teamName.visibility = View.GONE // Hide team name for admins
                 holder.categoryName.text = item.name
-                holder.itemView.setOnClickListener {
+
+                holder.itemLayout.setOnClickListener {
                     val context = holder.itemView.context
                     val intent = Intent(context, TeamSelectionActivity::class.java).apply {
                         putExtra("CATEGORY_ID", item.id)
@@ -51,7 +52,7 @@ class CategoryAdapter(
     override fun getItemCount(): Int = items.size
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val teamName: TextView = itemView.findViewById(R.id.team_name_item)
-        val categoryName: TextView = itemView.findViewById(R.id.category_name_item)
+        val categoryName: TextView = itemView.findViewById(R.id.category_name)
+        val itemLayout: LinearLayout = itemView.findViewById(R.id.category_item_layout)
     }
 }

@@ -230,6 +230,16 @@ object AppRepository {
             null
         }
     }
+    
+    suspend fun deletePlayer(id: String): Boolean {
+        return try {
+            apiService.deletePlayer(id)
+            true
+        } catch (e: Exception) {
+            println("API ERROR: Delete player failed - ${e.message}")
+            false
+        }
+    }
 
     suspend fun updatePlayerDetails(playerId: String, updatedPlayer: Player) {
         try {

@@ -1,39 +1,21 @@
 package com.rocio.organizacionesperanzas
 
-/**
- * This file contains all the data transfer objects (DTOs) used for API communication.
- */
+// --- AUTHENTICATION ---
+data class LoginRequest(val email: String, val pass: String)
+data class LoginResponse(val token: String, val user: User)
 
-// Models for the data structures themselves
+// --- USER ---
+data class User(val id: String, val email: String, val role: UserRole)
+data class CreateUserRequest(val email: String, val pass: String, val role: UserRole)
+enum class UserRole { ADMIN, ORGANIZER, DELEGATE }
 
+// --- CATEGORY ---
 data class Category(val id: String, val name: String)
+data class AssignedCategory(val id: String, val name: String, val category: Category)
 
-data class Team(val id: String, val name: String, val categories: List<Category>)
+// --- TEAM ---
+data class Team(val id: String, val name: String)
 
-data class User(
-    val id: String,
-    val username: String,
-    val role: UserRole,
-    val assignedTeams: List<String>? // List of team IDs, nullable
-)
-
-data class AssignedCategory(val teamName: String, val category: Category)
-
-// Request/Response bodies
-
-data class LoginRequest(val username: String, val password: String)
-
-data class LoginResponse(val userId: String, val token: String, val role: UserRole)
-
-data class PlayerUpdateRequest(val player: Player)
-
+// --- PLAYER ---
+enum class PlayerStatus { APPROVED, PENDING, REJECTED }
 data class StatusUpdateRequest(val status: PlayerStatus)
-
-// Models for creating/updating data
-
-data class CreateUserRequest(
-    val username: String,
-    val password: String,
-    val role: UserRole,
-    val assignedTeams: List<String>?
-)

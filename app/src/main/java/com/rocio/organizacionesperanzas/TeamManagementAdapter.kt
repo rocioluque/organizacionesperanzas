@@ -27,14 +27,16 @@ class TeamManagementAdapter(
         val team = teams[position]
         holder.teamName.text = team.name
 
+        // Set the categories and player count
+        holder.teamCategory.text = team.categories.joinToString(", ") { it.name }
+        // The player count is not directly available in the Team object.
+        // This would require a more complex data loading strategy to be accurate.
+        // For now, we'll just show a placeholder.
+        holder.teamPlayersCount.text = "? jugadores"
+
         holder.editButton.setOnClickListener {
             listener.onEditTeam(team)
         }
-
-        // The delete button is not in the new layout, so this is removed.
-        // holder.deleteButton.setOnClickListener {
-        //     listener.onDeleteTeam(team)
-        // }
     }
 
     override fun getItemCount(): Int = teams.size
@@ -46,8 +48,8 @@ class TeamManagementAdapter(
 
     class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val teamName: TextView = itemView.findViewById(R.id.team_name)
+        val teamCategory: TextView = itemView.findViewById(R.id.team_category)
+        val teamPlayersCount: TextView = itemView.findViewById(R.id.team_players_count)
         val editButton: ImageButton = itemView.findViewById(R.id.edit_button)
-        // The delete button is not in the new layout
-        // val deleteButton: ImageButton = itemView.findViewById(R.id.delete_team_button)
     }
 }

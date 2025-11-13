@@ -9,25 +9,4 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
 
-    <item
-        android:id="@+id/action_filter"
-        android:icon="@android:drawable/ic_menu_more"
-        android:title="Filtrar"
-        app:showAsAction="ifRoom">
-        <menu>
-            <item
-                android:id="@+id/action_filter_all"
-                android:title="Todos" />
-            <item
-                android:id="@+id/action_filter_approved"
-                android:title="Aprobados" />
-            <item
-                android:id="@+id/action_filter_pending"
-                android:title="Pendientes" />
-            <item
-                android:id="@+id/action_filter_rejected"
-                android:title="Rechazados" />
-        </menu>
-    </item>
-
 </menu>

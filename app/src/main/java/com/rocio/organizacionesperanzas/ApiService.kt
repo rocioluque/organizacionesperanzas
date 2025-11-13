@@ -10,20 +10,16 @@ import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 
-// Response for the photo upload endpoint
 data class UploadResponse(val url: String)
 
 interface ApiService {
-
     @POST("auth/login")
     suspend fun login(@Body request: LoginRequest): LoginResponse
 
-    // --- PHOTO UPLOAD ---
     @Multipart
     @POST("upload")
     suspend fun uploadPhoto(@Part photo: MultipartBody.Part): UploadResponse
 
-    // --- USERS (Management) ---
     @GET("users")
     suspend fun getUsers(): List<User>
 
@@ -36,7 +32,6 @@ interface ApiService {
     @DELETE("users/{id}")
     suspend fun deleteUser(@Path("id") id: String)
 
-    // --- CATEGORIES (Management) ---
     @GET("categories")
     suspend fun getAllCategories(): List<Category>
 
@@ -49,11 +44,9 @@ interface ApiService {
     @DELETE("categories/{id}")
     suspend fun deleteCategory(@Path("id") id: String)
 
-    // --- CATEGORIES (Delegate View) ---
     @GET("categories/{userId}")
     suspend fun getAssignedCategories(@Path("userId") userId: String): List<AssignedCategory>
 
-    // --- TEAMS (Management) ---
     @GET("teams")
     suspend fun getAllTeams(): List<Team>
 
@@ -65,12 +58,10 @@ interface ApiService {
 
     @DELETE("teams/{id}")
     suspend fun deleteTeam(@Path("id") id: String)
-    
-    // --- TEAMS (Organizer View) ---
+
     @GET("teams/by-category/{categoryId}")
     suspend fun getTeamsByCategory(@Path("categoryId") categoryId: String): List<Team>
 
-    // --- PLAYERS ---
     @GET("players/by-category/{categoryId}")
     suspend fun getPlayers(@Path("categoryId") categoryId: String): List<Player>
 
@@ -79,6 +70,9 @@ interface ApiService {
 
     @POST("players")
     suspend fun addPlayer(@Body player: Player): Player
+
+    @DELETE("players/{id}")
+    suspend fun deletePlayer(@Path("id") id: String)
 
     @PUT("players/{playerId}")
     suspend fun updatePlayerDetails(@Path("playerId") playerId: String, @Body player: Player)

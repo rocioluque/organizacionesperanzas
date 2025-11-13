@@ -15,6 +15,7 @@
     app:strokeWidth="1dp">
 
     <LinearLayout
+        android:id="@+id/player_item_layout" 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
@@ -24,16 +25,14 @@
         android:focusable="true">
 
         <!-- Foto del jugador -->
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/player_photo_item"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/player_photo_background"
             android:contentDescription="Foto del jugador"
-            app:srcCompat="@drawable/ic_person"
-            app:tint="@color/white" />
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
         <!-- Información del jugador -->
         <LinearLayout
@@ -55,22 +54,12 @@
                 android:fontFamily="sans-serif-medium" />
 
             <TextView
-                android:id="@+id/player_category"
+                android:id="@+id/player_birth_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Categoría"
+                android:text="Fecha de Nacimiento"
                 android:textColor="@color/oe_primary_muted"
                 android:textSize="14sp"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="sans-serif" />
-
-            <TextView
-                android:id="@+id/player_team"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Equipo"
-                android:textColor="@color/oe_primary_muted"
-                android:textSize="12sp"
                 android:fontFamily="sans-serif" />
 
         </LinearLayout>

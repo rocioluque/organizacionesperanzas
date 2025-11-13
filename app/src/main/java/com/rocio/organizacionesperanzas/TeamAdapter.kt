@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -22,12 +23,12 @@ class TeamAdapter(
         val team = teams[position]
         holder.teamName.text = team.name
 
-        holder.itemView.setOnClickListener {
+        holder.teamItemLayout.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, PlayerManagementActivity::class.java).apply {
                 putExtra("CATEGORY_ID", categoryId)
-                putExtra("TEAM_ID", team.id) // Pass the teamId as well
-                putExtra("TEAM_NAME", team.name) // For the title
+                putExtra("TEAM_ID", team.id)
+                putExtra("TEAM_NAME", team.name)
                 putExtra("USER_ROLE", userRole)
             }
             context.startActivity(intent)
@@ -38,5 +39,6 @@ class TeamAdapter(
 
     class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val teamName: TextView = itemView.findViewById(R.id.team_name)
+        val teamItemLayout: LinearLayout = itemView.findViewById(R.id.team_item_layout)
     }
 }

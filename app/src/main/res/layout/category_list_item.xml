@@ -15,6 +15,7 @@
     app:strokeWidth="1dp">
 
     <LinearLayout
+        android:id="@+id/category_item_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
@@ -23,55 +24,16 @@
         android:clickable="true"
         android:focusable="true">
 
-        <ImageView
-            android:id="@+id/category_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/category_icon_background"
-            android:padding="10dp"
-            android:contentDescription="Icono de categoría"
-            app:tint="@color/white"
-            tools:src="@drawable/ic_sports_soccer" />
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/category_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/team_name_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nombre del Equipo"
-                android:textColor="@color/oe_text_dark"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="sans-serif-medium" />
-
-            <TextView
-                android:id="@+id/category_name_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nombre de la Categoría"
-                android:textColor="@color/oe_primary_muted"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif" />
-
-        </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/edit_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Editar categoría"
-            android:padding="12dp"
-            app:tint="@color/oe_primary"
-            app:srcCompat="@drawable/ic_edit" />
+            android:layout_gravity="center_vertical"
+            android:text="Nombre de la Categoría"
+            android:textColor="@color/oe_text_dark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
