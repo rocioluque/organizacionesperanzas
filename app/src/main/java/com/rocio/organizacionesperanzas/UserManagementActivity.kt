@@ -7,7 +7,6 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.RadioGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +15,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 
 class UserManagementActivity : AppCompatActivity(), UserManagementAdapter.OnUserActionClickListener {
@@ -80,7 +78,7 @@ class UserManagementActivity : AppCompatActivity(), UserManagementAdapter.OnUser
     override fun onDeleteUser(user: User) {
         AlertDialog.Builder(this)
             .setTitle("Confirmar Eliminación")
-            .setMessage("¿Estás seguro de que quieres eliminar al usuario '${user.email}'?")
+            .setMessage("¿Estás seguro de que quieres eliminar al usuario '${user.username}'?")
             .setPositiveButton("Eliminar") { _, _ ->
                 lifecycleScope.launch {
                     val success = AppRepository.deleteUser(user.id)
@@ -102,15 +100,12 @@ class UserManagementActivity : AppCompatActivity(), UserManagementAdapter.OnUser
 
         val inflater = LayoutInflater.from(this)
         val dialogView = inflater.inflate(R.layout.dialog_add_user, null)
-        val dialogTitle = dialogView.findViewById<TextView>(R.id.dialog_title)
-        val emailInput = dialogView.findViewById<EditText>(R.id.username_input)
-        val passwordInput = dialogView.findViewById<TextInputEditText>(R.id.password_input)
+        val usernameInput = dialogView.findViewById<EditText>(R.id.username_input)
+        val passwordInput = dialogView.findViewById<EditText>(R.id.password_input)
         val roleGroup = dialogView.findViewById<RadioGroup>(R.id.role_radio_group)
 
-        dialogTitle.text = title
-
         if (isEditing) {
-            emailInput.setText(user!!.email)
+            usernameInput.setText(user!!.username)
             passwordInput.hint = "Dejar en blanco para no cambiar"
             when (user.role) {
                 UserRole.DELEGATE -> roleGroup.check(R.id.radio_delegate)
@@ -125,12 +120,12 @@ class UserManagementActivity : AppCompatActivity(), UserManagementAdapter.OnUser
             .setTitle(title)
             .setView(dialogView)
             .setPositiveButton(if (isEditing) "Guardar" else "Añadir") { _, _ ->
-                val email = emailInput.text.toString().trim()
+                val username = usernameInput.text.toString().trim()
                 val password = passwordInput.text.toString().trim()
                 val selectedRole = if (roleGroup.checkedRadioButtonId == R.id.radio_delegate) UserRole.DELEGATE else UserRole.ORGANIZER
 
-                if (email.isEmpty()) {
-                    Toast.makeText(this, "El email no puede estar vacío", Toast.LENGTH_SHORT).show()
+                if (username.isEmpty()) {
+                    Toast.makeText(this, "El nombre de usuario no puede estar vacío", Toast.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
                 if (!isEditing && password.isEmpty()) {
@@ -139,7 +134,7 @@ class UserManagementActivity : AppCompatActivity(), UserManagementAdapter.OnUser
                 }
 
                 lifecycleScope.launch {
-                    val userToSave = CreateUserRequest(email = email, password = password, role = selectedRole)
+                    val userToSave = CreateUserRequest(username = username, password = password, role = selectedRole)
                     val result = if (isEditing) {
                         AppRepository.updateUser(user!!.id, userToSave)
                     } else {

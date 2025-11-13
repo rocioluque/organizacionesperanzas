@@ -35,29 +35,17 @@ object AppRepository {
     suspend fun uploadPhotoToCloudinary(photoUri: Uri): String? = suspendCoroutine { continuation ->
         MediaManager.get().upload(photoUri)
             .callback(object : UploadCallback {
-                override fun onStart(requestId: String) {
-                    println("Cloudinary upload started...")
-                }
-
+                override fun onStart(requestId: String) {}
                 override fun onProgress(requestId: String, bytes: Long, totalBytes: Long) {}
-
                 override fun onSuccess(requestId: String, resultData: Map<*, *>) {
-                    val secureUrl = resultData["secure_url"] as? String
-                    println("Cloudinary upload success: $secureUrl")
-                    continuation.resume(secureUrl)
+                    continuation.resume(resultData["secure_url"] as? String)
                 }
-
                 override fun onError(requestId: String, error: ErrorInfo) {
-                    println("Cloudinary upload error: ${error.description}")
                     continuation.resume(null)
                 }
-
-                override fun onReschedule(requestId: String, error: ErrorInfo) {
-                    println("Cloudinary upload rescheduled: ${error.description}")
-                }
+                override fun onReschedule(requestId: String, error: ErrorInfo) {}
             }).dispatch()
     }
-
 
     // --- USERS (Management) ---
     suspend fun getUsers(): List<User> {
@@ -145,7 +133,7 @@ object AppRepository {
         }
     }
 
-    suspend fun addTeam(team: Team): Team? {
+    suspend fun addTeam(team: TeamRequest): Team? {
         return try {
             apiService.addTeam(team)
         } catch (e: Exception) {
@@ -154,7 +142,7 @@ object AppRepository {
         }
     }
 
-    suspend fun updateTeam(id: String, team: Team): Team? {
+    suspend fun updateTeam(id: String, team: TeamRequest): Team? {
         return try {
             apiService.updateTeam(id, team)
         } catch (e: Exception) {
@@ -173,41 +161,26 @@ object AppRepository {
         }
     }
 
-    // --- TEAMS (Organizer View) ---
     suspend fun getTeamsByCategory(categoryId: String): List<Team> {
         return try {
-            println("API CALL: Getting teams for categoryId: $categoryId")
-            val teams = apiService.getTeamsByCategory(categoryId)
-            println("API SUCCESS: Found ${teams.size} teams for categoryId: $categoryId")
-            teams
-        } catch (e: HttpException) {
-            println("API HTTP Error on getTeamsByCategory: Code = ${e.code()}, Body = ${e.response()?.errorBody()?.string()}")
-            emptyList()
+            apiService.getTeamsByCategory(categoryId)
         } catch (e: Exception) {
-            println("API Network Error on getTeamsByCategory: ${e.message}")
             emptyList()
         }
     }
 
-    // --- PLAYERS ---
     suspend fun getPlayers(categoryId: String): List<Player> {
         return try {
             apiService.getPlayers(categoryId)
         } catch (e: Exception) {
-            println("API ERROR: Get players for category $categoryId failed - ${e.message}")
             emptyList()
         }
     }
 
     suspend fun getPlayerById(playerId: String): Player? {
         return try {
-            println("API CALL: Getting player by ID: $playerId")
             apiService.getPlayerById(playerId)
-        } catch (e: HttpException) {
-            println("API HTTP Error on getPlayerById: Code = ${e.code()}, Body = ${e.response()?.errorBody()?.string()}, ID: $playerId")
-            null
         } catch (e: Exception) {
-            println("API Network Error on getPlayerById for ID $playerId: ${e.message}")
             null
         }
     }
@@ -216,17 +189,15 @@ object AppRepository {
         return try {
             apiService.addPlayer(player)
         } catch (e: Exception) {
-            println("API ERROR: Add player failed - ${e.message}")
             null
         }
     }
-    
+
     suspend fun deletePlayer(id: String): Boolean {
         return try {
             apiService.deletePlayer(id)
             true
         } catch (e: Exception) {
-            println("API ERROR: Delete player failed - ${e.message}")
             false
         }
     }
@@ -234,18 +205,12 @@ object AppRepository {
     suspend fun updatePlayerDetails(playerId: String, updatedPlayer: Player) {
         try {
             apiService.updatePlayerDetails(playerId, updatedPlayer)
-        } catch (e: HttpException) {
-            println("API HTTP Error on updatePlayerDetails: Code = ${e.code()}, Body = ${e.response()?.errorBody()?.string()}, ID: $playerId")
-        } catch (e: Exception) {
-            println("API Network Error on updatePlayerDetails for ID $playerId: ${e.message}")
-        }
+        } catch (e: Exception) {}
     }
 
     suspend fun updatePlayerStatus(playerId: String, newStatus: PlayerStatus) {
         try {
             apiService.updatePlayerStatus(playerId, StatusUpdateRequest(newStatus))
-        } catch (e: Exception) {
-            println("API ERROR: Update status failed - ${e.message}.")
-        }
+        } catch (e: Exception) {}
     }
 }

@@ -61,13 +61,13 @@ interface ApiService {
     @GET("teams")
     suspend fun getAllTeams(): List<Team>
 
-    // Crea un nuevo equipo
+    // CORREGIDO: Ahora usa TeamRequest para enviar los datos
     @POST("teams")
-    suspend fun addTeam(@Body team: Team): Team
+    suspend fun addTeam(@Body team: TeamRequest): Team
 
-    // Actualiza un equipo existente
+    // CORREGIDO: Ahora usa TeamRequest para enviar los datos
     @PUT("teams/{id}")
-    suspend fun updateTeam(@Path("id") id: String, @Body team: Team): Team
+    suspend fun updateTeam(@Path("id") id: String, @Body team: TeamRequest): Team
 
     // Elimina un equipo
     @DELETE("teams/{id}")

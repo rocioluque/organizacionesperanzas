@@ -16,11 +16,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Set up the toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Get data from intent
         val userRole = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getSerializableExtra("USER_ROLE", UserRole::class.java)
         } else {
@@ -35,7 +33,6 @@ class HomeActivity : AppCompatActivity() {
         val manageUsersButton = findViewById<Button>(R.id.manage_users_button)
 
         if (userRole == UserRole.ORGANIZER) {
-            // --- ADMIN / ORGANIZER ---
             supportActionBar?.title = "Panel de Administrador"
             titleTextView.visibility = View.VISIBLE
             manageCategoriesButton.visibility = View.VISIBLE
@@ -64,8 +61,7 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-        } else { 
-            // --- DELEGATE ---
+        } else {
             supportActionBar?.title = "Mis Jugadores"
             titleTextView.visibility = View.GONE
             manageCategoriesButton.visibility = View.GONE

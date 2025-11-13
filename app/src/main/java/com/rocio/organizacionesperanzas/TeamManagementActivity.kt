@@ -137,24 +137,20 @@ class TeamManagementActivity : AppCompatActivity(), TeamManagementAdapter.OnTeam
                     val name = teamNameInput.text.toString().trim()
                     if (name.isNotEmpty()) {
                         val selectedPositions: SparseBooleanArray = categoriesListView.checkedItemPositions
-                        val selectedCategories = mutableListOf<Category>()
+                        val selectedCategoryIds = mutableListOf<String>()
                         for (i in 0 until allCategories.size) {
                             if (selectedPositions[i]) {
-                                selectedCategories.add(allCategories[i])
+                                selectedCategoryIds.add(allCategories[i].id)
                             }
                         }
 
-                        val teamToSave = if (isEditing) {
-                            team!!.copy(name = name, categories = selectedCategories)
-                        } else {
-                            Team(id = "", name = name, playerCount = 0, categories = selectedCategories)
-                        }
+                        val teamRequest = TeamRequest(name = name, categoryIds = selectedCategoryIds)
 
                         lifecycleScope.launch {
                             val result = if (isEditing) {
-                                AppRepository.updateTeam(team!!.id, teamToSave)
+                                AppRepository.updateTeam(team!!.id, teamRequest)
                             } else {
-                                AppRepository.addTeam(teamToSave)
+                                AppRepository.addTeam(teamRequest)
                             }
 
                             if (result != null) {
