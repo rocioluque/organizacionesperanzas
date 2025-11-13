@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/oe_primary_light"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <!-- Foto del jugador -->
+        <ImageView
+            android:id="@+id/player_photo_item"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/player_photo_background"
+            android:contentDescription="Foto del jugador"
+            app:srcCompat="@drawable/ic_person"
+            app:tint="@color/white" />
+
+        <!-- Información del jugador -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/player_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre del Jugador"
+                android:textColor="@color/oe_text_dark"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/player_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Categoría"
+                android:textColor="@color/oe_primary_muted"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/player_team"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Equipo"
+                android:textColor="@color/oe_primary_muted"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif" />
+
+        </LinearLayout>
+
+        <!-- Indicador de estado y acciones -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Indicador de estado -->
+            <ImageView
+                android:id="@+id/status_indicator"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="Estado del jugador"
+                app:srcCompat="@drawable/ic_status_approved"
+                app:tint="@color/oe_success" />
+
+            <!-- Botón de acción rápida -->
+            <ImageButton
+                android:id="@+id/action_button"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Acciones del jugador"
+                android:padding="8dp"
+                app:tint="@color/oe_primary"
+                app:srcCompat="@drawable/ic_more_vert" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

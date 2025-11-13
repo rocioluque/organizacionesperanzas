@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Colors -->
+    <color name="black">#FF000000</color>
+
+    <!-- App Theme Colors from Logo -->
+    <color name="oe_green">#1A6734</color>
+    <color name="oe_green_dark">#145229</color>
+    <color name="oe_gold">#B89E69</color>
+    <color name="oe_black">#FF000000</color>
+    <color name="oe_white">#FFFFFFFF</color>
+
+    <!-- Material Theme Colors (for compatibility) -->
+    <color name="colorPrimary">@color/oe_green</color>
+    <color name="colorPrimaryDark">@color/oe_green_dark</color>
+    <color name="colorAccent">@color/oe_gold</color>
+
+    <color name="oe_primary">#2E7D32</color>
+    <color name="oe_primary_dark">#1B5E20</color>
+    <color name="oe_primary_light">#4CAF50</color>
+    <color name="oe_primary_muted">#81C784</color>
+    <color name="oe_text_dark">#212121</color>
+    <color name="oe_text_light">#757575</color>
+    <color name="white">#FFFFFF</color>
+    <color name="oe_grey">#F5F5F5</color>
+    <color name="oe_success">#4CAF50</color>
+    <color name="oe_success_dark">#388E3C</color>
+    <color name="oe_error">#F44336</color>
+    <color name="oe_error_dark">#D32F2F</color>
+    <color name="color_accent">#FF5722</color>
+    <color name="color_blue">#2196F3</color>
+    <color name="color_green">#4CAF50</color>
+    <color name="color_purple">#9C27B0</color>
+    <color name="oe_warning">#FF9800</color>
+</resources>

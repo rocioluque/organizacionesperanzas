@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.OrganizacionEsperanzas" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/oe_green</item>
+        <item name="colorPrimaryVariant">@color/oe_green_dark</item>
+        <item name="colorOnPrimary">@color/oe_white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/oe_gold</item>
+        <item name="colorSecondaryVariant">@color/oe_gold</item>
+        <item name="colorOnSecondary">@color/oe_black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <!-- Set window background to match login screen -->
+        <item name="android:windowBackground">@color/oe_grey</item>
+
+        <!-- Set default text color for readability -->
+        <item name="android:textColorPrimary">@color/oe_black</item>
+        <item name="android:textColorSecondary">@color/oe_black</item>
+    </style>
+
+    <style name="Theme.OrganizacionEsperanzas" parent="Base.Theme.OrganizacionEsperanzas" />
+
+    <!-- Theme for Login without ActionBar -->
+    <style name="Theme.OrganizacionEsperanzas.Login" parent="Base.Theme.OrganizacionEsperanzas" />
+
+    <!-- Custom Button Style -->
+    <style name="App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/oe_gold</item>
+        <item name="android:textColor">@color/oe_black</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

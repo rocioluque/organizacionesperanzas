@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Título del diálogo -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nueva Categoría"
+        android:textColor="@color/oe_text_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif-medium" />
+
+    <!-- Campo de nombre de categoría -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/oe_primary"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/oe_primary"
+        app:startIconDrawable="@drawable/ic_category"
+        app:startIconTint="@color/oe_primary"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/oe_primary"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        android:hint="Nombre de la categoría">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/category_name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/oe_text_dark"
+            android:textColorHint="@color/oe_primary_muted"
+            android:minHeight="52dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="16sp"
+            android:background="@android:color/transparent"
+            android:maxLines="1"
+            android:imeOptions="actionDone"
+            tools:text="Sub-15" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Selector de icono (opcional) -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Icono de la categoría"
+        android:textColor="@color/oe_text_dark"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="sans-serif-medium" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/icon_selector_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <!-- Selector de color (opcional) -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Color de la categoría"
+        android:textColor="@color/oe_text_dark"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="sans-serif-medium" />
+
+    <LinearLayout
+        android:id="@+id/color_selector_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone">
+
+        <!-- Colores predefinidos para categorías -->
+        <View
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@color/oe_primary"
+            android:layout_margin="4dp"
+            android:tag="color_primary" />
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="#FF5722"
+            android:layout_margin="4dp"
+            android:tag="color_accent" />
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="#2196F3"
+            android:layout_margin="4dp"
+            android:tag="color_blue" />
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="#4CAF50"
+            android:layout_margin="4dp"
+            android:tag="color_green" />
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="#9C27B0"
+            android:layout_margin="4dp"
+            android:tag="color_purple" />
+
+    </LinearLayout>
+
+    <!-- Mensaje de error (dinámico) -->
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/oe_error"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        android:paddingStart="4dp" />
+
+</LinearLayout>

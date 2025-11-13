@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    tools:context=".HomeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/oe_primary"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/oe_primary"
+            app:titleTextColor="@color/white"
+            app:subtitleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Logo o icono de la aplicación -->
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="32dp"
+                android:src="@drawable/logo_torneo"
+                android:contentDescription="@string/app_name"/>
+
+            <!-- Título principal -->
+            <TextView
+                android:id="@+id/home_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Panel de Control"
+                android:textColor="@color/oe_text_dark"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bienvenido al sistema de gestión"
+                android:textColor="@color/oe_primary_muted"
+                android:textSize="16sp"
+                android:layout_marginBottom="48dp" />
+
+            <!-- Tarjeta contenedora de botones -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/oe_primary_light"
+                app:strokeWidth="1dp"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <!-- Botón Gestionar Jugadores -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/manage_players_button"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:minHeight="56dp"
+                        android:gravity="start|center_vertical"
+                        android:text="Gestionar Jugadores"
+                        android:textColor="@color/oe_text_dark"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_people"
+                        app:iconTint="@color/oe_primary"
+                        app:iconPadding="16dp"
+                        app:cornerRadius="12dp"
+                        app:backgroundTint="@color/white" />
+
+                    <!-- Divisor -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/oe_primary_light" />
+
+                    <!-- Botón Gestionar Categorías -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/manage_categories_button"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:minHeight="56dp"
+                        android:gravity="start|center_vertical"
+                        android:text="Gestionar Categorías"
+                        android:textColor="@color/oe_text_dark"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_category"
+                        app:iconTint="@color/oe_primary"
+                        app:iconPadding="16dp"
+                        app:cornerRadius="12dp"
+                        app:backgroundTint="@color/white" />
+
+                    <!-- Divisor -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/oe_primary_light" />
+
+                    <!-- Botón Gestionar Equipos -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/manage_teams_button"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:minHeight="56dp"
+                        android:gravity="start|center_vertical"
+                        android:text="Gestionar Equipos"
+                        android:textColor="@color/oe_text_dark"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_teams"
+                        app:iconTint="@color/oe_primary"
+                        app:iconPadding="16dp"
+                        app:cornerRadius="12dp"
+                        app:backgroundTint="@color/white" />
+
+                    <!-- Divisor -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/oe_primary_light" />
+
+                    <!-- Botón Gestionar Usuarios -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/manage_users_button"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:minHeight="56dp"
+                        android:gravity="start|center_vertical"
+                        android:text="Gestionar Usuarios"
+                        android:textColor="@color/oe_text_dark"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_admin"
+                        app:iconTint="@color/oe_primary"
+                        app:iconPadding="16dp"
+                        app:cornerRadius="12dp"
+                        app:backgroundTint="@color/white" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

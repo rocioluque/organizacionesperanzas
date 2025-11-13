@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">OrganizacionEsperanzas</string>
+    <string name="empty_categories">Estado vacío de categorías</string>
+    <string name="no_categories_found">No se encontraron categorías</string>
+    <string name="add_first_category">Presiona el botón + para agregar la primera categoría</string>
+    <string name="add_category">Agregar categoría</string>
+    <string name="no_categories_available">No hay categorías disponibles</string>
+    <string name="contact_administrator">Contacta al administrador</string>
+    <string name="select_category">Seleccionar categoría</string>
+    <string name="empty_players">Estado vacío de jugadores</string>
+    <string name="no_players_found">No se encontraron jugadores</string>
+    <string name="add_first_player">Presiona el botón + para agregar el primer jugador</string>
+    <string name="add_player">Agregar jugador</string>
+    <string name="empty_teams">Estado vacío de equipos</string>
+    <string name="no_teams_found">No se encontraron equipos</string>
+    <string name="add_first_team">Presiona el botón + para agregar el primer equipo</string>
+    <string name="add_team">Agregar equipo</string>
+    <string name="no_teams_available">No hay equipos disponibles</string>
+    <string name="contact_administrator_teams">Contacta al administrador</string>
+    <string name="select_team">Seleccionar equipo</string>
+    <string name="empty_users">Estado vacío de usuarios</string>
+    <string name="no_users_found">No se encontraron usuarios</string>
+    <string name="add_first_user">Presiona el botón + para agregar el primer usuario</string>
+    <string name="add_user">Agregar usuario</string>
+</resources>

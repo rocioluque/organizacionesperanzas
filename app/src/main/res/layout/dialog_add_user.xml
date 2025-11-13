@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Título del diálogo -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nuevo Usuario"
+        android:textColor="@color/oe_text_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif-medium" />
+
+    <!-- Campo de Nombre de Usuario -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxStrokeColor="@color/oe_primary"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/oe_primary"
+        app:startIconDrawable="@drawable/ic_person"
+        app:startIconTint="@color/oe_primary"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/oe_primary"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        android:hint="Nombre de usuario">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/username_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/oe_text_dark"
+            android:textColorHint="@color/oe_primary_muted"
+            android:minHeight="52dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="16sp"
+            android:background="@android:color/transparent"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            tools:text="juan.perez" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Campo de Contraseña -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxStrokeColor="@color/oe_primary"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/oe_primary"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="@color/oe_primary"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/oe_primary"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        android:hint="Contraseña">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/oe_text_dark"
+            android:textColorHint="@color/oe_primary_muted"
+            android:minHeight="52dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="16sp"
+            android:background="@android:color/transparent"
+            android:inputType="textPassword"
+            android:imeOptions="actionNext"
+            tools:text="••••••••" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Campo de Confirmar Contraseña -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:boxStrokeColor="@color/oe_primary"
+        app:boxStrokeWidth="1.5dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/oe_primary"
+        app:startIconDrawable="@drawable/ic_lock_outline"
+        app:startIconTint="@color/oe_primary"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/oe_primary"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        android:hint="Confirmar contraseña">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confirm_password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/oe_text_dark"
+            android:textColorHint="@color/oe_primary_muted"
+            android:minHeight="52dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="16sp"
+            android:background="@android:color/transparent"
+            android:inputType="textPassword"
+            android:imeOptions="actionNext"
+            tools:text="••••••••" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Selector de Rol -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rol del usuario"
+        android:textColor="@color/oe_text_dark"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="sans-serif-medium" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="1dp"
+        app:strokeColor="@color/oe_primary_light"
+        app:strokeWidth="1dp"
+        android:layout_marginBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RadioGroup
+                android:id="@+id/role_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radio_organizer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Organizador"
+                    android:textColor="@color/oe_text_dark"
+                    android:textSize="15sp"
+                    app:buttonTint="@color/oe_primary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Acceso completo al sistema"
+                    android:textColor="@color/oe_primary_muted"
+                    android:textSize="12sp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="12dp" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radio_delegate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Delegado"
+                    android:textColor="@color/oe_text_dark"
+                    android:textSize="15sp"
+                    app:buttonTint="@color/oe_primary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gestión de equipos asignados"
+                    android:textColor="@color/oe_primary_muted"
+                    android:textSize="12sp"
+                    android:layout_marginStart="32dp" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Selector de Equipos (visible solo para delegados) -->
+    <TextView
+        android:id="@+id/teams_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Equipos asignados"
+        android:textColor="@color/oe_text_dark"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="sans-serif-medium"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/teams_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:maxHeight="200dp"
+        android:visibility="gone" />
+
+    <!-- Mensaje de error (dinámico) -->
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/oe_error"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        android:paddingStart="4dp" />
+
+</LinearLayout>
